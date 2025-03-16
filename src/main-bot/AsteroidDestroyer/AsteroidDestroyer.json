@@ -1,0 +1,10 @@
+{
+  "name": "Asteroid Destroyer",
+  "version": "1.0",
+  "authors": ["Timothy Niels Ruslim"],
+  "description": "Naively Cute",
+  "homepage": "https://www.instagram.com/timoruslim",
+  "countryCodes": ["id"],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}

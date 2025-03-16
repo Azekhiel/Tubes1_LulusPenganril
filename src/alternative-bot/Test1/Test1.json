@@ -1,0 +1,10 @@
+{
+  "name": "Test1",
+  "version": "1.0",
+  "authors": ["William"],
+  "description": "This bot moves around in a crazy pattern.",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 6.0",
+  "programmingLang": "C# 10.0"
+}
