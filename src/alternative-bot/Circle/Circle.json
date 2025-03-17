@@ -1,0 +1,10 @@
+{
+  "name": "Circle",
+  "version": "1.0",
+  "authors": ["Ghaisan Zaki Pratama"],
+  "description": "Bot yang berusaha terus melingkar menyelamatkan diri tapi sambil nembak kalau bot musuh deket",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 9.0",
+  "programmingLang": "C# 10.0"
+}
