@@ -5,16 +5,14 @@ using Robocode.TankRoyale.BotApi.Events;
 
 public class Avenger : Bot
 {  
-    int currentTick = 0;
     int lastScannedTick = 0;
 
     string targetId = null;
-    int chips = 0;
+    int rageFactor = 0;
     int bitDirection = 1;
 
-    enum BotMode { Scanning, Chasing, Strafing, Evading }
+    enum BotMode { Scanning, Chasing, Strafing }
     BotMode mode = BotMode.Scanning;
-    
     int modeCooldown = 0;
 
 
@@ -25,7 +23,6 @@ public class Avenger : Bot
 
     Avenger() : base(BotInfo.FromFile("Avenger.json")) { }
     
-    // Called when a new round is started -> initialize and do some movement
     public override void Run()
     {
         var pink = Color.FromArgb(0xFF, 0x69, 0xB4);
@@ -39,13 +36,12 @@ public class Avenger : Bot
         AdjustRadarForBodyTurn = true;
         AdjustRadarForGunTurn = true;
 
-        // Loop while running
+        lastScannedTick = 0;
+
         while (IsRunning)
         {
-            currentTick++;    
-            Console.WriteLine(targetId);
 
-            if (targetId == null || currentTick - lastScannedTick > 15) 
+            if (targetId == null || TurnNumber - lastScannedTick > 1) 
             {
                 targetId = null;
                 SetTurnRadarLeft(Double.PositiveInfinity);
@@ -67,10 +63,10 @@ public class Avenger : Bot
             
         if (targetId == e.ScannedBotId.ToString())
         {
-            lastScannedTick = currentTick;
+            lastScannedTick = TurnNumber;
 
             double targetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
-            double firePower = 4 * Math.Exp(-targetDistance / (250 + chips)) * Energy/100;
+            double firePower = 4 * Math.Exp(-targetDistance / (250 + rageFactor));
             PointF targetPosition = LinearPrediction(e, targetDistance / (20 - (3 * firePower))); 
 
             double radarDirection = RadarBearingTo(e.X, e.Y);   
@@ -100,7 +96,6 @@ public class Avenger : Bot
                 SetTurnLeft(moveDirecion + 90); 
                 SetForward(bitDirection * 100); 
             }
-            Console.WriteLine("Walking");
 
             if (radarDirection == 0)
                 Rescan(); 
@@ -111,15 +106,14 @@ public class Avenger : Bot
     {
         if (e.VictimId.ToString() == targetId)
             targetId = null;
-            chips = 0;
+            rageFactor = 0;
     }
 
     public override void OnHitBot(HitBotEvent e)
     {
-        Console.WriteLine("Dodging");
         bitDirection = -bitDirection; 
         SetTurnLeft(BearingTo(e.X, e.Y));  
-        SetBack(100);
+        SetBack(100); 
         Go();
     }
 
@@ -131,9 +125,9 @@ public class Avenger : Bot
     public override void OnBulletHit(BulletHitBotEvent e)
     {
         if (e.VictimId.ToString() == targetId)
-            chips += 100;
+            rageFactor += 100;
         else
-            chips = 0;
+            rageFactor = 0;
     }
 
     public PointF LinearPrediction(ScannedBotEvent scannedBot, double time)

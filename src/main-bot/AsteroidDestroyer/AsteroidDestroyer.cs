@@ -5,17 +5,16 @@ using Robocode.TankRoyale.BotApi.Events;
 
 public class AsteroidDestroyer : Bot
 {  
-    int currentTick = 0;
-    int lastScannedTick = 0;
+    int ScannedTurn = 0;
 
-    string targetId = null;
-    int chips = 0;
-    int bitDirection = 1;
+    int TargetId = -1;
+    double TargetEnergy;
 
-    enum BotMode { Scanning, Chasing, Strafing, Evading }
-    BotMode mode = BotMode.Scanning;
-    
-    int modeCooldown = 0;
+    sbyte Polarity = 1;
+
+    enum BotMode { Scanning, Chasing, Strafing }
+    BotMode Mode = BotMode.Scanning;
+    int ModeCooldown = 0;
 
 
     static void Main(string[] args)
@@ -39,16 +38,17 @@ public class AsteroidDestroyer : Bot
         AdjustRadarForBodyTurn = true;
         AdjustRadarForGunTurn = true;
 
-        // Loop while running
+        ScannedTurn = 0;
+
         while (IsRunning)
         {
-            currentTick++;    
-            Console.WriteLine(targetId);
+            Mode = (TurnNumber - ScannedTurn > 1) ? BotMode.Scanning : Mode;
+            Console.WriteLine(TurnNumber + " vs " + ScannedTurn);
 
-            if (targetId == null || currentTick - lastScannedTick > 15) 
+            if (Mode == BotMode.Scanning) 
             {
-                targetId = null;
-                SetTurnRadarLeft(Double.PositiveInfinity);
+                TargetId = -1;
+                SetTurnRadarLeft(double.PositiveInfinity);
                 SetTurnLeft(BearingTo(ArenaWidth/2, ArenaHeight/2));
                 SetForward(100); 
             } 
@@ -59,91 +59,115 @@ public class AsteroidDestroyer : Bot
     
     public override void OnScannedBot(ScannedBotEvent e)
     {   
-        if (targetId == null)
+        if (TargetId < 0)
         {
-            targetId = e.ScannedBotId.ToString();
-            
+            TargetId = e.ScannedBotId;
+            TargetEnergy = e.Energy;
         }
             
-        if (targetId == e.ScannedBotId.ToString())
+        if (TargetId == e.ScannedBotId)
         {
-            lastScannedTick = currentTick;
+            ScannedTurn = TurnNumber;
 
-            double targetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
-            double firePower = 4 * Math.Exp(-targetDistance / (250 + chips)) * Energy/100;
-            PointF targetPosition = LinearPrediction(e, targetDistance / (20 - (3 * firePower))); 
+            double TargetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
 
-            double radarDirection = RadarBearingTo(e.X, e.Y);   
-            double gunDirection = GunBearingTo(targetPosition.X, targetPosition.Y);
-            double moveDirecion = BearingTo(targetPosition.X, targetPosition.Y);
+            double DistanceFactor = 3 * Math.Exp(-TargetDistance / 250);
+            double SpeedFactor = 1 - (e.Speed / 8); 
+            double EnergyFactor = 1 - Math.Exp(-Energy / 25);
+            double FirePower = (DistanceFactor + SpeedFactor) * EnergyFactor; 
 
-            SetTurnRadarLeft(radarDirection);
-            SetTurnGunLeft(gunDirection); 
-            Fire(firePower);
+            PointF TargetPosition = LinearPrediction(e, FirePower); 
 
-            if (modeCooldown > 15) 
+            double RadarDirection = RadarBearingTo(e.X, e.Y);   
+            double GunDirection = GunBearingTo(TargetPosition.X, TargetPosition.Y);
+            double MoveDirecion = BearingTo(TargetPosition.X, TargetPosition.Y);
+
+            SetTurnRadarLeft(RadarDirection);
+            SetTurnGunLeft(GunDirection); 
+            Fire(FirePower);
+
+            if (ModeCooldown > 15) 
             {
-                modeCooldown = 0;
-                mode = (targetDistance > 150) ? BotMode.Chasing : BotMode.Strafing;
+                ModeCooldown = 0;
+                Mode = (TargetDistance > 150 || e.Energy < 25) ? BotMode.Chasing : BotMode.Strafing;
             } else 
             {
-                modeCooldown++;
+                ModeCooldown++;
             }
 
-            if (mode == BotMode.Chasing) 
+            if (Mode == BotMode.Chasing) 
             {
-                SetTurnLeft(moveDirecion);   
-                SetForward(targetDistance / 2);
+                SetTurnLeft(MoveDirecion);   
+                SetForward(TargetDistance / 2);
             }   
             else 
             {
-                SetTurnLeft(moveDirecion + 90); 
-                SetForward(bitDirection * 100); 
+                SetTurnLeft(MoveDirecion + 90); 
+                SetForward(Polarity * 100); 
             }
-            Console.WriteLine("Walking");
 
-            if (radarDirection == 0)
+            if (RadarDirection == 0)
                 Rescan(); 
+        } else 
+        {
+            if (e.Energy < TargetEnergy)
+            {
+                TargetId = e.ScannedBotId;
+                TargetEnergy = e.Energy;
+            }
         }
     }
 
     public override void OnBotDeath(BotDeathEvent e)
     {
-        if (e.VictimId.ToString() == targetId)
-            targetId = null;
-            chips = 0;
+        if (e.VictimId == TargetId)
+            TargetId = -1;
     }
 
     public override void OnHitBot(HitBotEvent e)
     {
-        Console.WriteLine("Dodging");
-        bitDirection = -bitDirection; 
-        SetTurnLeft(BearingTo(e.X, e.Y));  
+        Polarity *= -1; 
         SetBack(100);
+        SetTurnRadarLeft(RadarBearingTo(e.X, e.Y) + 90);
+        if (e.Energy < TargetEnergy)
+        {
+            TargetId = e.VictimId;
+            TargetEnergy = e.Energy;
+            SetTurnRadarLeft(RadarBearingTo(e.X, e.Y));
+        } else 
         Go();
     }
 
     public override void OnHitWall(HitWallEvent e)
     {
-        bitDirection = -bitDirection;
+        Polarity *= -1;
     }
 
-    public override void OnBulletHit(BulletHitBotEvent e)
+    public PointF LinearPrediction(ScannedBotEvent scannedBot, double firePower)
     {
-        if (e.VictimId.ToString() == targetId)
-            chips += 100;
-        else
-            chips = 0;
-    }
 
-    public PointF LinearPrediction(ScannedBotEvent scannedBot, double time)
-    {
-        double theta = Math.PI * scannedBot.Direction / 180.0;
-        
-        float predictedX = (float)(scannedBot.X + Math.Cos(theta) * scannedBot.Speed * time);
-        float predictedY = (float)(scannedBot.Y + Math.Sin(theta) * scannedBot.Speed * time);
+        double bulletSpeed = 20 - (3 * firePower);
+        double predictedX = scannedBot.X;
+        double predictedY = scannedBot.Y;
+        double enemyDirection = Math.PI * scannedBot.Direction / 180.0;
 
-        return new PointF(predictedX, predictedY);
+        double prevDistance = double.MaxValue;
+
+        for (int i = 0; i < 30; i++) 
+        {
+            double distance = Math.Sqrt(Math.Pow(predictedX - X, 2) + Math.Pow(predictedY - Y, 2));
+            double time = distance / bulletSpeed;
+
+            if (Math.Abs(distance - prevDistance) < 1.0) 
+                break;
+
+            prevDistance = distance;
+
+            predictedX = scannedBot.X + Math.Cos(enemyDirection) * scannedBot.Speed * time;
+            predictedY = scannedBot.Y + Math.Sin(enemyDirection) * scannedBot.Speed * time;
+        }
+
+        return new PointF((float) predictedX, (float) predictedY);
     }
 
 }
