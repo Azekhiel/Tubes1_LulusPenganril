@@ -24,6 +24,7 @@ D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bot\Tes
 D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bot\Test1\obj\Debug\net9.0\Test1.AssemblyInfoInputs.cache
 D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bot\Test1\obj\Debug\net9.0\Test1.AssemblyInfo.cs
 D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bot\Test1\obj\Debug\net9.0\Test1.csproj.CoreCompileInputs.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bot\Test1\obj\Debug\net9.0\Test1.sourcelink.json
 D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bot\Test1\obj\Debug\net9.0\Test1.csproj.Up2Date
 D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bot\Test1\obj\Debug\net9.0\Test1.dll
 D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bot\Test1\obj\Debug\net9.0\refint\Test1.dll

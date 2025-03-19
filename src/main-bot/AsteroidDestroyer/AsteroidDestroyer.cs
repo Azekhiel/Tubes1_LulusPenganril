@@ -5,16 +5,18 @@ using Robocode.TankRoyale.BotApi.Events;
 
 public class AsteroidDestroyer : Bot
 {  
-    Random random = new Random();
     int currentTick = 0;
     int lastScannedTick = 0;
 
     string targetId = null;
     int chips = 0;
-
     int bitDirection = 1;
-    string mode = "Chasing";
-    int modeTick = 0;
+
+    enum BotMode { Scanning, Chasing, Strafing, Evading }
+    BotMode mode = BotMode.Scanning;
+    
+    int modeCooldown = 0;
+
 
     static void Main(string[] args)
     {
@@ -40,13 +42,14 @@ public class AsteroidDestroyer : Bot
         // Loop while running
         while (IsRunning)
         {
-            currentTick++;      
+            currentTick++;    
+            Console.WriteLine(targetId);
 
-            if (targetId == null || currentTick - lastScannedTick > 30) 
+            if (targetId == null || currentTick - lastScannedTick > 15) 
             {
                 targetId = null;
                 SetTurnRadarLeft(Double.PositiveInfinity);
-                SetTurnLeft(BearingTo(ArenaWidth/2, ArenaHeight/2) + RandomGaussian(0, 90));
+                SetTurnLeft(BearingTo(ArenaWidth/2, ArenaHeight/2));
                 SetForward(100); 
             } 
             
@@ -67,7 +70,7 @@ public class AsteroidDestroyer : Bot
             lastScannedTick = currentTick;
 
             double targetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
-            double firePower = 3 * Math.Exp(-targetDistance / (250 + chips)) * Energy/100;
+            double firePower = 4 * Math.Exp(-targetDistance / (250 + chips)) * Energy/100;
             PointF targetPosition = LinearPrediction(e, targetDistance / (20 - (3 * firePower))); 
 
             double radarDirection = RadarBearingTo(e.X, e.Y);   
@@ -76,53 +79,31 @@ public class AsteroidDestroyer : Bot
 
             SetTurnRadarLeft(radarDirection);
             SetTurnGunLeft(gunDirection); 
+            Fire(firePower);
 
-            if (modeTick > 15) 
+            if (modeCooldown > 15) 
             {
-                modeTick = 0;
-                mode = (targetDistance > 150) ? "Chasing" : "Strafing";
+                modeCooldown = 0;
+                mode = (targetDistance > 150) ? BotMode.Chasing : BotMode.Strafing;
             } else 
             {
-                modeTick++;
+                modeCooldown++;
             }
 
-            if (mode == "Chasing") 
+            if (mode == BotMode.Chasing) 
             {
-                int mult = (X < 20 || X > ArenaWidth - 20 || Y < 20 || Y > ArenaHeight - 20) ? 0 : 1;
-                SetTurnLeft(moveDirecion + mult * RandomGaussian(0, 90));   
+                SetTurnLeft(moveDirecion);   
                 SetForward(targetDistance / 2);
             }   
             else 
             {
-                SetTurnLeft(moveDirecion + RandomGaussian(90, 30)); 
+                SetTurnLeft(moveDirecion + 90); 
                 SetForward(bitDirection * 100); 
             }
-            Fire(firePower);
+            Console.WriteLine("Walking");
 
             if (radarDirection == 0)
                 Rescan(); 
-        }
-    }
-
-    public override void OnWonRound(WonRoundEvent e)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            BodyColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-            GunColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-            RadarColor = Color.FromArgb(random.Next(256), random.Next(256), random.Next(256));
-
-            SetTurnGunRight(Double.PositiveInfinity);
-            SetTurnRadarLeft(Double.PositiveInfinity);
-
-            SetForward(100);
-            if (i % 2 == 0)
-                SetTurnRight(RandomGaussian(180, 90)); 
-            else
-                SetTurnLeft(RandomGaussian(180, 90));
-            
-            Fire(0.1);
-            Go();
         }
     }
 
@@ -135,9 +116,10 @@ public class AsteroidDestroyer : Bot
 
     public override void OnHitBot(HitBotEvent e)
     {
+        Console.WriteLine("Dodging");
         bitDirection = -bitDirection; 
-        SetTurnLeft(BearingTo(e.X, e.Y) + RandomGaussian(90, 30));
-        SetForward(100);
+        SetTurnLeft(BearingTo(e.X, e.Y));  
+        SetBack(100);
         Go();
     }
 
@@ -154,23 +136,14 @@ public class AsteroidDestroyer : Bot
             chips = 0;
     }
 
-    public PointF LinearPrediction(ScannedBotEvent scannedBot, double turnsAhead)
+    public PointF LinearPrediction(ScannedBotEvent scannedBot, double time)
     {
-        double targetDirection = Math.PI * scannedBot.Direction / 180.0;
+        double theta = Math.PI * scannedBot.Direction / 180.0;
         
-        float futureX = (float)(scannedBot.X + Math.Cos(targetDirection) * scannedBot.Speed * turnsAhead);
-        float futureY = (float)(scannedBot.Y + Math.Sin(targetDirection) * scannedBot.Speed * turnsAhead);
+        float predictedX = (float)(scannedBot.X + Math.Cos(theta) * scannedBot.Speed * time);
+        float predictedY = (float)(scannedBot.Y + Math.Sin(theta) * scannedBot.Speed * time);
 
-        return new PointF(futureX, futureY);
-    }
-    
-    double RandomGaussian(double mu, double sd)
-    {   
-        // Thanks to yoyoyoyosef for the method: https://stackoverflow.com/a/218600/17651489
-        double u1 = 1.0 - random.NextDouble(); 
-        double u2 = 1.0 - random.NextDouble();
-        double stdNormal = Math.Sqrt(-2.0 * Math.Log(u1)) * Math.Sin(2.0 * Math.PI * u2);
-        return mu + sd * stdNormal; 
+        return new PointF(predictedX, predictedY);
     }
 
 }

@@ -1,0 +1,10 @@
+{
+  "name": "Avenger",
+  "version": "1.0",
+  "authors": ["Timothy Niels Ruslim"],
+  "description": "American Style",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 9.0",
+  "programmingLang": "C# 10.0"
+}
