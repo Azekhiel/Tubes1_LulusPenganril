@@ -3,72 +3,112 @@ using System.Drawing;
 using Robocode.TankRoyale.BotApi;
 using Robocode.TankRoyale.BotApi.Events;
 
-public class Test1 : Bot
+public class Tes1 : Bot
 {
-    int turnDirection = 1; 
+    int turnDirection = 1;
     bool movingForward;
-    bool adaMusuh = false;
-    int musuhHilang = 1;
+    bool enemyDetected = false; 
+    bool paused = false;
 
-    private void TurnToFaceTarget(double x, double y)
+    static void Main() => new Crazy().Start();
+
+    Crazy() : base(BotInfo.FromFile("Tes1.json"))
+    {
+    }
+
+    private void AimTurretToTarget(double x, double y)
     {
         var bearing = BearingTo(x, y);
         if (bearing >= 0)
+        {
             turnDirection = 1;
+            TurnGunLeft(bearing);
+        }
         else
+        {
             turnDirection = -1;
-
-        TurnLeft(bearing);
+            TurnGunRight(-bearing);
+        }
+        WaitFor(new TurnCompleteCondition(this));
     }
 
-    static void Main()
+    private void StopMovement() => Stop();
+
+    private void ResumeMovement()
     {
-        new Test1().Start();
+        paused = false;
+        enemyDetected = false;
     }
 
-    // Constructor, which loads the bot config file
-    Test1() : base(BotInfo.FromFile("Test1.json")) { }
-
-    // Called when a new round is started -> initialize and do some movement
     public override void Run()
     {
-        BodyColor = Color.FromArgb(0x00, 0xC8, 0x00);   // lime
-        TurretColor = Color.FromArgb(0x00, 0x96, 0x32); // green
-        RadarColor = Color.FromArgb(0x00, 0x64, 0x64);  // dark cyan
-        BulletColor = Color.FromArgb(0xFF, 0xFF, 0x64); // yellow
-        ScanColor = Color.FromArgb(0xFF, 0xC8, 0xC8);   // light red
+        BodyColor   = Color.FromArgb(0x00, 0xC8, 0x00); 
+        TurretColor = Color.FromArgb(0x00, 0x96, 0x32); 
+        RadarColor  = Color.FromArgb(0x00, 0x64, 0x64); 
+        BulletColor = Color.FromArgb(0xFF, 0xFF, 0x64); 
+        ScanColor   = Color.FromArgb(0xFF, 0xC8, 0xC8); 
 
         movingForward = true;
 
-        // Loop while as long as the bot is running
         while (IsRunning)
         {
-            // Tell the game we will want to move ahead 40000 -- some large number
-            if (!adaMusuh){
-                SetTurnGunLeft(360);
+            if (enemyDetected==false && paused==false)
+            {
+                SetTurnLeft(5);
+                SetTurnGunLeft(5);
+                SetForward(300);
             }
-            else{
-                musuhHilang++;
-                if (musuhHilang>=10){
-                    adaMusuh = false;
-                    musuhHilang = 0;
-                }
-            }
-
-            Forward(100);
-            movingForward = true;
             Go();
         }
     }
 
-    // We collided with a wall -> reverse the direction
+    public override void OnScannedBot(ScannedBotEvent e)
+    {
+        paused = true;
+        enemyDetected = true;
+        StopMovement();
+
+        double distance = DistanceTo(e.X, e.Y);
+
+        if (distance <= 50)
+        {
+            AimTurretToTarget(e.X, e.Y);
+            WaitFor(new TurnCompleteCondition(this));
+            Fire(Energy * 0.75);
+            WaitFor(new TurnCompleteCondition(this));
+        }
+        else if (Energy >= 30 && distance <= 1000)
+        {
+            AimTurretToTarget(e.X, e.Y);
+            WaitFor(new TurnCompleteCondition(this));
+            double firePower = Math.Max(1, 5 - (distance / 200));
+            Fire(firePower);
+            WaitFor(new TurnCompleteCondition(this));
+        }
+        else if (Energy < 30 && distance <= 300)
+        {
+            AimTurretToTarget(e.X, e.Y);
+            WaitFor(new TurnCompleteCondition(this));
+            SetForward(200);
+            WaitFor(new TurnCompleteCondition(this));
+        }
+        
+        ResumeMovement();
+    }
+
     public override void OnHitWall(HitWallEvent e)
     {
-        // Bounce off!
         ReverseDirection();
     }
 
-    // ReverseDirection: Switch from ahead to back & vice versa
+    public override void OnHitBot(HitBotEvent e)
+    {
+        if (e.IsRammed)
+        {
+            ReverseDirection();
+        }
+    }
+
     public void ReverseDirection()
     {
         if (movingForward)
@@ -82,35 +122,8 @@ public class Test1 : Bot
             movingForward = true;
         }
     }
-
-    // We scanned another bot -> fire!
-    public override void OnScannedBot(ScannedBotEvent e) {
-        musuhHilang=0;
-        adaMusuh=true;
-        TurnToFaceTarget(e.X, e.Y);
-        var distance = DistanceTo(e.X, e.Y);
-
-        if (distance <= 1000 && Energy>=30){
-            Fire(10-(distance/100));
-            SetTurnRight(90);
-        }
-        else if (Energy <30 && distance <=300){
-            TurnToFaceTarget(e.X,e.Y);
-        }
-    }
-
-    // We hit another bot -> back up!
-    public override void OnHitBot(HitBotEvent e)
-    {
-        // If we're moving into the other bot, reverse!
-        if (e.IsRammed)
-        {
-            ReverseDirection();
-        }
-    }
 }
 
-// Condition that is triggered when the turning is complete
 public class TurnCompleteCondition : Condition
 {
     private readonly Bot bot;
@@ -120,10 +133,5 @@ public class TurnCompleteCondition : Condition
         this.bot = bot;
     }
 
-    public override bool Test()
-    {
-        // turn is complete when the remainder of the turn is zero
-        return bot.TurnRemaining == 0;
-    }
-    
+    public override bool Test() => bot.TurnRemaining == 0;
 }
