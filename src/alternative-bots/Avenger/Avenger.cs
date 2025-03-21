@@ -7,13 +7,12 @@ public class Avenger : Bot
 {  
     int lastScannedTick = 0;
 
-    string targetId = null;
+    int targetId = -1;
+    (double X, double Y) targetLocation;
     int rageFactor = 0;
-    int bitDirection = 1;
 
-    enum BotMode { Scanning, Chasing, Strafing }
-    BotMode mode = BotMode.Scanning;
-    int modeCooldown = 0;
+    enum BotMode { Search, Revenge }
+    BotMode mode = BotMode.Search;
 
 
     static void Main(string[] args)
@@ -35,33 +34,40 @@ public class Avenger : Bot
         AdjustRadarForBodyTurn = true;
         AdjustRadarForGunTurn = true;
 
+        targetId = -1;
         lastScannedTick = 0;
 
         while (IsRunning)
         {
-
-            if (targetId == null || TurnNumber - lastScannedTick > 1) 
+            
+            if (targetId < 0 || TurnNumber - lastScannedTick > 1) 
             {
-                targetId = null;
-                SetTurnRadarLeft(Double.PositiveInfinity);
-                SetTurnLeft(BearingTo(ArenaWidth/2, ArenaHeight/2));
-                SetForward(100); 
+                targetId = -1;
+                mode = BotMode.Search;
+                SetTurnRadarLeft(double.PositiveInfinity);
             } 
+
+            if (targetId > 0 && mode == BotMode.Search)
+            {
+                SetTurnRadarLeft(double.PositiveInfinity);
+                SetTurnLeft(BearingTo(targetLocation.X, targetLocation.Y));
+                SetForward(100); 
+            }
             
             Go();
         }
     }
     
     public override void OnScannedBot(ScannedBotEvent e)
-    {   
-        if (targetId == null)
+    {  
+        if (targetId < 0)
         {
-            targetId = e.ScannedBotId.ToString();
-            
+            SetTurnLeft(-GunBearingTo(e.X, e.Y));
+            SetForward(100);
         }
-            
-        if (targetId == e.ScannedBotId.ToString())
+        if (targetId == e.ScannedBotId)
         {
+            mode = BotMode.Revenge;
             lastScannedTick = TurnNumber;
 
             double targetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
@@ -70,60 +76,61 @@ public class Avenger : Bot
 
             double radarDirection = RadarBearingTo(e.X, e.Y);   
             double gunDirection = GunBearingTo(targetPosition.X, targetPosition.Y);
-            double moveDirecion = BearingTo(targetPosition.X, targetPosition.Y);
+            double moveDirection = BearingTo(targetPosition.X, targetPosition.Y);
 
             SetTurnRadarLeft(radarDirection);
             SetTurnGunLeft(gunDirection); 
             Fire(firePower);
 
-            if (modeCooldown > 15) 
+            if (targetDistance > 50) 
             {
-                modeCooldown = 0;
-                mode = (targetDistance > 150) ? BotMode.Chasing : BotMode.Strafing;
-            } else 
-            {
-                modeCooldown++;
-            }
-
-            if (mode == BotMode.Chasing) 
-            {
-                SetTurnLeft(moveDirecion);   
+                SetTurnLeft(moveDirection);
                 SetForward(targetDistance / 2);
-            }   
-            else 
-            {
-                SetTurnLeft(moveDirecion + 90); 
-                SetForward(bitDirection * 100); 
-            }
+            } 
 
             if (radarDirection == 0)
                 Rescan(); 
         }
     }
 
+    public override void OnHitByBullet(HitByBulletEvent e)
+    {
+        if (targetId < 0) {
+            lastScannedTick = TurnNumber;       
+            targetId = e.Bullet.OwnerId;
+            targetLocation = (e.Bullet.X, e.Bullet.Y);
+            SetTurnRadarLeft(RadarBearingTo(e.Bullet.X, e.Bullet.Y));
+            SetTurnGunLeft(GunBearingTo(e.Bullet.X, e.Bullet.Y));
+            SetForward(100);
+        }
+    }
+
     public override void OnBotDeath(BotDeathEvent e)
     {
-        if (e.VictimId.ToString() == targetId)
-            targetId = null;
+        if (e.VictimId == targetId)
+            targetId = -1;
             rageFactor = 0;
+            mode = BotMode.Search;
     }
 
     public override void OnHitBot(HitBotEvent e)
     {
-        bitDirection = -bitDirection; 
-        SetTurnLeft(BearingTo(e.X, e.Y));  
+        if (targetId < 0) {
+            lastScannedTick = TurnNumber;       
+            targetId = e.VictimId;
+            targetLocation = (e.X, e.Y);
+            SetTurnRadarLeft(RadarBearingTo(e.X, e.Y));
+            SetTurnGunLeft(GunBearingTo(e.X, e.Y));
+            SetForward(100);
+        }
+        SetTurnLeft(BearingTo(e.X, e.Y) + 90);  
         SetBack(100); 
         Go();
     }
 
-    public override void OnHitWall(HitWallEvent e)
-    {
-        bitDirection = -bitDirection;
-    }
-
     public override void OnBulletHit(BulletHitBotEvent e)
     {
-        if (e.VictimId.ToString() == targetId)
+        if (e.VictimId == targetId)
             rageFactor += 100;
         else
             rageFactor = 0;
@@ -133,10 +140,10 @@ public class Avenger : Bot
     {
         double theta = Math.PI * scannedBot.Direction / 180.0;
         
-        float predictedX = (float)(scannedBot.X + Math.Cos(theta) * scannedBot.Speed * time);
-        float predictedY = (float)(scannedBot.Y + Math.Sin(theta) * scannedBot.Speed * time);
+        double predictedX = scannedBot.X + Math.Cos(theta) * scannedBot.Speed * time;
+        double predictedY = scannedBot.Y + Math.Sin(theta) * scannedBot.Speed * time;
 
-        return new PointF(predictedX, predictedY);
+        return new PointF((float) predictedX, (float) predictedY);
     }
 
 }
