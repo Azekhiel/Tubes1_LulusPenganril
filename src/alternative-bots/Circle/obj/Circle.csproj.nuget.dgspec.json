@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Circle\\Circle.csproj": {}
+    "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\tubes1-if2211-starter-pack-1.0\\tubes1-if2211-starter-pack-1.0\\sample-bots-csharp-0.30.0\\Circle\\Circle.csproj": {}
   },
   "projects": {
-    "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Circle\\Circle.csproj": {
+    "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\tubes1-if2211-starter-pack-1.0\\tubes1-if2211-starter-pack-1.0\\sample-bots-csharp-0.30.0\\Circle\\Circle.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Circle\\Circle.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\tubes1-if2211-starter-pack-1.0\\tubes1-if2211-starter-pack-1.0\\sample-bots-csharp-0.30.0\\Circle\\Circle.csproj",
         "projectName": "Circle",
-        "projectPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Circle\\Circle.csproj",
-        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-        "outputPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Circle\\obj\\",
+        "projectPath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\tubes1-if2211-starter-pack-1.0\\tubes1-if2211-starter-pack-1.0\\sample-bots-csharp-0.30.0\\Circle\\Circle.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\tubes1-if2211-starter-pack-1.0\\tubes1-if2211-starter-pack-1.0\\sample-bots-csharp-0.30.0\\Circle\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"

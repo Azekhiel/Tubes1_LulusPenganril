@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AsteroidDestroyer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9bcf1872c046847a86f5808dbaf01cd077db0cce")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cf21b401c2b7c3dc557ad80e397e396a52cc2260")]
 [assembly: System.Reflection.AssemblyProductAttribute("AsteroidDestroyer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AsteroidDestroyer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

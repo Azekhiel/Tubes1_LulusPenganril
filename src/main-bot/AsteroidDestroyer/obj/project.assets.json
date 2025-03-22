@@ -818,19 +818,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\HP\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\main-bot\\AsteroidDestroyer\\AsteroidDestroyer.csproj",
+      "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\main-bot\\AsteroidDestroyer\\AsteroidDestroyer.csproj",
       "projectName": "AsteroidDestroyer",
-      "projectPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\main-bot\\AsteroidDestroyer\\AsteroidDestroyer.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\main-bot\\AsteroidDestroyer\\obj\\",
+      "projectPath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\main-bot\\AsteroidDestroyer\\AsteroidDestroyer.csproj",
+      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\main-bot\\AsteroidDestroyer\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

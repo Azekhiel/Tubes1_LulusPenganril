@@ -12,8 +12,6 @@ public class Circle : Bot
     bool initialized = false;
 
     // Parameter gerakan
-    const double BASE_FORWARD = 80;  // kecepatan dasar maju
-    const double TURN_ADJUST = 5;     // perintah putar minimum (tapi akan dikoreksi)
     const double WALL_MARGIN = 50;     // margin agar tidak menabrak dinding
 
     // Faktor koreksi untuk menjaga radius
@@ -131,28 +129,68 @@ public class Circle : Bot
     double targetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
     
     // firepower berdasarkan jarak 
-    double firePower = (targetDistance < 150) ? 3 : 1;
-    
-    double radarDirection = RadarBearingTo(e.X, e.Y);
-    double gunDirection = GunBearingTo(e.X, e.Y);
-    
-    // Terapkan faktor smoothing untuk perputaran radar dan gun
-    double smoothingFactor = 0.5;
-    double adjustedRadarTurn = smoothingFactor * radarDirection;
-    double adjustedGunTurn = smoothingFactor * gunDirection;
-    
-    SetTurnRadarLeft(adjustedRadarTurn);
-    SetTurnGunLeft(adjustedGunTurn);
-    
-    // Jika target berada dalam jarak tertentu, tembak
-    if (targetDistance < 300)
+    double firePower = (targetDistance < 2 * radius) ? 3 : 1;
+
+    if (e.Energy < 20) 
     {
+        SetForward(targetDistance + 50);
         Fire(firePower);
-    }
-    
-    Go();        
-    Console.WriteLine("I see a bot at " + e.X + ", " + e.Y);
+        Go();
+        RepositionToCircle();
+    }    
+    else {
+        double radarDirection = RadarBearingTo(e.X, e.Y);
+        double gunDirection = GunBearingTo(e.X, e.Y);
         
+        // Terapkan faktor smoothing untuk perputaran radar dan gun
+        double smoothingFactor = 0.5;
+        double adjustedRadarTurn = smoothingFactor * radarDirection;
+        double adjustedGunTurn = smoothingFactor * gunDirection;
+        
+        SetTurnRadarLeft(adjustedRadarTurn);
+        SetTurnGunLeft(adjustedGunTurn);
+        
+        // Jika target berada dalam jarak tertentu, tembak
+        if (targetDistance < 2 * radius)
+        {
+            Fire(firePower);
+        }
+        
+        Go();        
+        Console.WriteLine("I see a bot at " + e.X + ", " + e.Y);  
+    }  
+    }
+    public void RepositionToCircle()
+    {
+        // Hitung keempat titik pada tepi lingkaran dengan sudut 0°, 90°, 180°, 270°
+        // 0°: kanan, 90°: atas, 180°: kiri, 270°: bawah 
+        PointF[] candidates = new PointF[4];
+        candidates[0] = new PointF((float)(centerX + radius), (float)(centerY));         // 0°
+        candidates[1] = new PointF((float)(centerX), (float)(centerY - radius));         // 90°
+        candidates[2] = new PointF((float)(centerX - radius), (float)(centerY));         // 180°
+        candidates[3] = new PointF((float)(centerX), (float)(centerY + radius));         // 270°
+
+        // Hitung jarak dari posisi bot saat ini (X, Y) ke tiap candidate
+        double minDistance = double.MaxValue;
+        int minIndex = 0;
+        for (int i = 0; i < candidates.Length; i++)
+        {
+            double dx = candidates[i].X - X;
+            double dy = candidates[i].Y - Y;
+            double d = Math.Sqrt(dx * dx + dy * dy);
+            Console.WriteLine($"Candidate {i}: ({candidates[i].X:F1}, {candidates[i].Y:F1}), distance = {d:F1}");
+            if (d < minDistance)
+            {
+                minDistance = d;
+                minIndex = i;
+            }
+        }
+
+        Console.WriteLine($"Closest candidate is index {minIndex} with distance {minDistance:F1}");
+        
+        // Pindahkan bot ke titik candidate terdekat
+        MoveTo(candidates[minIndex].X, candidates[minIndex].Y);
+
     }
 
     public override void OnHitBot(HitBotEvent e)
