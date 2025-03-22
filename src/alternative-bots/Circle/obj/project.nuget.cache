@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mzzz/o9xV4c=",
+  "dgSpecHash": "Du0ZWMJ95ow=",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\tubes1-if2211-starter-pack-1.0\\tubes1-if2211-starter-pack-1.0\\sample-bots-csharp-0.30.0\\Circle\\Circle.csproj",
+  "projectFilePath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Circle\\Circle.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.build.locator\\1.7.8\\microsoft.build.locator.1.7.8.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.extensions.configuration\\8.0.0\\microsoft.extensions.configuration.8.0.0.nupkg.sha512",
