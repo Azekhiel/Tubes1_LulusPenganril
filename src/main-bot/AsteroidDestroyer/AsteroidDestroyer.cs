@@ -92,7 +92,7 @@ public class AsteroidDestroyer : Bot
                 Mode = (TargetDistance > 150 || e.Energy < 25) ? BotMode.Chasing : BotMode.Strafing;
             } else 
             {
-                ModeCooldown++;
+                ModeCooldown++;         
             }
 
             if (Mode == BotMode.Chasing) 
