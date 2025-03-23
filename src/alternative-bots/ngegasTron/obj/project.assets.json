@@ -818,19 +818,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Administrator\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Kuliah\\SMT 6\\Strategi Algoritma\\TuBes\\tuBes1\\sample-bots-csharp-0.30.0\\ngegasTron\\ngegasTron.csproj",
+      "projectUniqueName": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\ngegasTron\\ngegasTron.csproj",
       "projectName": "ngegasTron",
-      "projectPath": "D:\\Kuliah\\SMT 6\\Strategi Algoritma\\TuBes\\tuBes1\\sample-bots-csharp-0.30.0\\ngegasTron\\ngegasTron.csproj",
-      "packagesPath": "C:\\Users\\Administrator\\.nuget\\packages\\",
-      "outputPath": "D:\\Kuliah\\SMT 6\\Strategi Algoritma\\TuBes\\tuBes1\\sample-bots-csharp-0.30.0\\ngegasTron\\obj\\",
+      "projectPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\ngegasTron\\ngegasTron.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\ngegasTron\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Administrator\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

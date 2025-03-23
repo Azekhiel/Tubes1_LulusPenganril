@@ -2,7 +2,7 @@
   "name": "Asteroid Destroyer",
   "version": "1.1",
   "authors": ["Timothy Niels Ruslim"],
-  "description": "Naively Cute",
+  "description": "Naively Cute: target anyone easiest to kill...",
   "homepage": "https://www.instagram.com/timoruslim",
   "countryCodes": ["id"],
   "platform": ".Net 9.0",

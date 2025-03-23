@@ -1,14 +1,10 @@
 {
   "name": "ngegasTron",
   "version": "1.0",
-  "authors": [
-    "William Gerald Briandelo (13222061)"
-    ],
-  "description": "bot ini bergerak dengan mengeluarkan energi sesuai jarak musuh, atau menabrak musuh jika darah habis dan musuh dalam jarak dekat.",
+  "authors": ["William Gerald B."],
+  "description": "Bot ini bergerak dengan mengeluarkan energi sesuai jarak musuh, atau menabrak musuh jika darah habis dan musuh dalam jarak dekat.",
   "homepage": "",
-  "countryCodes": [
-    "id"
-  ],
+  "countryCodes": ["id"],
   "platform": ".Net 9.0",
   "programmingLang": "C# 10.0"
 }

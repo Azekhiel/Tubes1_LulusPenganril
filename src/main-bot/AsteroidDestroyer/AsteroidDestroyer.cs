@@ -108,14 +108,11 @@ public class AsteroidDestroyer : Bot
 
             if (RadarDirection == 0)
                 Rescan(); 
-        } else 
+        } else if (e.Energy < TargetEnergy)
         {
-            if (e.Energy < TargetEnergy)
-            {
-                TargetId = e.ScannedBotId;
-                TargetEnergy = e.Energy;
-            }
-        }
+            TargetId = e.ScannedBotId;
+            TargetEnergy = e.Energy;
+        }       
     }
 
     public override void OnBotDeath(BotDeathEvent e)
