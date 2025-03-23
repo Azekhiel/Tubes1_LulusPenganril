@@ -1,33 +1,33 @@
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.exe
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.deps.json
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.runtimeconfig.json
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.pdb
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Build.Locator.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Binder.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Newtonsoft.Json.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\Robocode.TankRoyale.BotApi.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\SVG.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\System.Drawing.Common.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\bin\Debug\net9.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.csproj.AssemblyReference.cache
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.AssemblyInfoInputs.cache
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.AssemblyInfo.cs
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.csproj.CoreCompileInputs.cache
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.sourcelink.json
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.csproj.Up2Date
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\refint\Avenger.dll
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.pdb
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.genruntimeconfig.cache
-C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Avenger\obj\Debug\net9.0\ref\Avenger.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.exe
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.deps.json
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.runtimeconfig.json
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Avenger.pdb
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Newtonsoft.Json.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\Robocode.TankRoyale.BotApi.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\SVG.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\bin\Debug\net9.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.csproj.AssemblyReference.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.GeneratedMSBuildEditorConfig.editorconfig
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.AssemblyInfoInputs.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.AssemblyInfo.cs
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.csproj.CoreCompileInputs.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.sourcelink.json
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.csproj.Up2Date
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\refint\Avenger.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.pdb
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\Avenger.genruntimeconfig.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Avenger\obj\Debug\net9.0\ref\Avenger.dll

@@ -818,19 +818,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Circle\\Circle.csproj",
+      "projectUniqueName": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Circle\\Circle.csproj",
       "projectName": "Circle",
-      "projectPath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Circle\\Circle.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Circle\\obj\\",
+      "projectPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Circle\\Circle.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Circle\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net9.0"

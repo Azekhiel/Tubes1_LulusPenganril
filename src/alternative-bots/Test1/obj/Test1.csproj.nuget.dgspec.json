@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Test1\\Test1.csproj": {}
+    "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Test1\\Test1.csproj": {}
   },
   "projects": {
-    "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Test1\\Test1.csproj": {
+    "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Test1\\Test1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Test1\\Test1.csproj",
+        "projectUniqueName": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Test1\\Test1.csproj",
         "projectName": "Test1",
-        "projectPath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Test1\\Test1.csproj",
-        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\HP\\OneDrive\\Documents\\Stima\\Tubes1\\Tugas-Besar-1-IF2211\\src\\alternative-bots\\Test1\\obj\\",
+        "projectPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Test1\\Test1.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\ITB\\Semester 4\\Strategi Algoritma\\Tugas Besar 1\\Tubes\\src\\alternative-bots\\Test1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"

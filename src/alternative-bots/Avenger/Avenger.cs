@@ -49,6 +49,7 @@ public class Avenger : Bot
 
             if (targetId > 0 && mode == BotMode.Search)
             {
+                lastScannedTick = TurnNumber;
                 SetTurnRadarLeft(double.PositiveInfinity);
                 SetTurnLeft(BearingTo(targetLocation.X, targetLocation.Y));
                 SetForward(100); 
@@ -69,6 +70,7 @@ public class Avenger : Bot
         {
             mode = BotMode.Revenge;
             lastScannedTick = TurnNumber;
+            targetLocation = (e.X, e.Y);
 
             double targetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
             double firePower = 4 * Math.Exp(-targetDistance / (250 + rageFactor));
@@ -125,7 +127,6 @@ public class Avenger : Bot
         }
         SetTurnLeft(BearingTo(e.X, e.Y) + 90);  
         SetBack(100); 
-        Go();
     }
 
     public override void OnBulletHit(BulletHitBotEvent e)

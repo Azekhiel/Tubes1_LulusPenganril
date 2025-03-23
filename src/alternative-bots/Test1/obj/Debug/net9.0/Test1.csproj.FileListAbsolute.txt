@@ -31,3 +31,36 @@ C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative
 C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.pdb
 C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.genruntimeconfig.cache
 C:\Users\HP\OneDrive\Documents\Stima\Tubes1\Tugas-Besar-1-IF2211\src\alternative-bots\Test1\obj\Debug\net9.0\ref\Test1.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Test1.exe
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Test1.deps.json
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Test1.runtimeconfig.json
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Test1.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Test1.pdb
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Build.Locator.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.Configuration.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Abstractions.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Binder.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.Configuration.FileExtensions.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.Configuration.Json.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Abstractions.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.FileProviders.Physical.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.FileSystemGlobbing.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Extensions.Primitives.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Microsoft.Win32.SystemEvents.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Newtonsoft.Json.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\Robocode.TankRoyale.BotApi.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\SVG.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\System.Drawing.Common.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\bin\Debug\net9.0\runtimes\win\lib\net8.0\Microsoft.Win32.SystemEvents.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.csproj.AssemblyReference.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.GeneratedMSBuildEditorConfig.editorconfig
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.AssemblyInfoInputs.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.AssemblyInfo.cs
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.csproj.CoreCompileInputs.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.sourcelink.json
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.csproj.Up2Date
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\refint\Test1.dll
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.pdb
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\Test1.genruntimeconfig.cache
+D:\ITB\Semester 4\Strategi Algoritma\Tugas Besar 1\Tubes\src\alternative-bots\Test1\obj\Debug\net9.0\ref\Test1.dll
