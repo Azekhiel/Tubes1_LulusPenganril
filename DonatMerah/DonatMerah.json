@@ -1,0 +1,10 @@
+{
+  "name": "DonatMerah",
+  "version": "1.0",
+  "authors": ["Ghaisan Zaki Pratama"],
+  "description": "Bot yang berusaha terus melingkar tapi sambil nembak bot musuh",
+  "homepage": "",
+  "countryCodes": ["id"],
+  "platform": ".Net 9.0",
+  "programmingLang": "C# 10.0"
+}
