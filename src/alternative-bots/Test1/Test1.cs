@@ -3,16 +3,16 @@ using System.Drawing;
 using Robocode.TankRoyale.BotApi;
 using Robocode.TankRoyale.BotApi.Events;
 
-public class Tes1 : Bot
+public class Test1 : Bot
 {
     int turnDirection = 1;
     bool movingForward;
     bool enemyDetected = false; 
     bool paused = false;
 
-    static void Main() => new Tes1().Start();
+    static void Main() => new Test1().Start();
 
-    Tes1() : base(BotInfo.FromFile("Tes1.json")){
+    Test1() : base(BotInfo.FromFile("Test1.json")){
     }
 
     private void ResetState(){
