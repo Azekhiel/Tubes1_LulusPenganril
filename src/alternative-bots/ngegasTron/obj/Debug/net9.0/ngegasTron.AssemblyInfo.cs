@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ngegasTron")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4919e0ac968f110464d3ab1a7a1714282e536867")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d81b7410b956202837c0a1f78b956977b7e35a41")]
 [assembly: System.Reflection.AssemblyProductAttribute("ngegasTron")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ngegasTron")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
