@@ -3,16 +3,15 @@ using System.Drawing;
 using Robocode.TankRoyale.BotApi;
 using Robocode.TankRoyale.BotApi.Events;
 
-public class Crazy : Bot
+public class ngegasTron : Bot
 {
-    int turnDirection = 1;
     bool movingForward;
     bool enemyDetected = false; 
     bool paused = false;
 
-    static void Main() => new Crazy().Start();
+    static void Main() => new ngegasTron().Start();
 
-    Crazy() : base(BotInfo.FromFile("Crazy.json")){
+    ngegasTron() : base(BotInfo.FromFile("ngegasTron.json")){
     }
 
     private void ResetState(){
@@ -32,12 +31,10 @@ public class Crazy : Bot
         var bearing = BearingTo(x, y);
         if (bearing >= 0)
         {
-            turnDirection = 1;
             TurnGunLeft(bearing);
         }
         else
         {
-            turnDirection = -1;
             TurnGunRight(-bearing);
         }
         WaitFor(new TurnCompleteCondition(this));
