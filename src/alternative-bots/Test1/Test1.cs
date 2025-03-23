@@ -3,21 +3,32 @@ using System.Drawing;
 using Robocode.TankRoyale.BotApi;
 using Robocode.TankRoyale.BotApi.Events;
 
-public class Test1 : Bot
+public class Tes1 : Bot
 {
     int turnDirection = 1;
     bool movingForward;
     bool enemyDetected = false; 
     bool paused = false;
 
-    static void Main() => new Test1().Start();
+    static void Main() => new Tes1().Start();
 
-    Test1() : base(BotInfo.FromFile("Test1.json"))
-    {
+    Tes1() : base(BotInfo.FromFile("Tes1.json")){
     }
 
-    private void AimTurretToTarget(double x, double y)
-    {
+    private void ResetState(){
+        paused = false;
+        enemyDetected = false;
+        movingForward = true;
+    }
+    public override void OnGameStarted(GameStartedEvent e){
+        ResetState();
+    }    
+
+    public override void OnRoundStarted(RoundStartedEvent e){
+        ResetState();
+    }
+
+    private void AimTarget(double x, double y){
         var bearing = BearingTo(x, y);
         if (bearing >= 0)
         {
@@ -42,11 +53,11 @@ public class Test1 : Bot
 
     public override void Run()
     {
-        BodyColor   = Color.FromArgb(0x00, 0xC8, 0x00); 
-        TurretColor = Color.FromArgb(0x00, 0x96, 0x32); 
-        RadarColor  = Color.FromArgb(0x00, 0x64, 0x64); 
-        BulletColor = Color.FromArgb(0xFF, 0xFF, 0x64); 
-        ScanColor   = Color.FromArgb(0xFF, 0xC8, 0xC8); 
+        BodyColor   = Color.FromArgb(0x00, 0xC8, 0x00); // lime
+        TurretColor = Color.FromArgb(0x00, 0x96, 0x32); // green
+        RadarColor  = Color.FromArgb(0x00, 0x64, 0x64); // dark cyan
+        BulletColor = Color.FromArgb(0xFF, 0xFF, 0x64); // yellow
+        ScanColor   = Color.FromArgb(0xFF, 0xC8, 0xC8); // light red
 
         movingForward = true;
 
@@ -72,14 +83,14 @@ public class Test1 : Bot
 
         if (distance <= 50)
         {
-            AimTurretToTarget(e.X, e.Y);
+            AimTarget(e.X, e.Y);
             WaitFor(new TurnCompleteCondition(this));
             Fire(Energy * 0.75);
             WaitFor(new TurnCompleteCondition(this));
         }
         else if (Energy >= 30 && distance <= 1000)
         {
-            AimTurretToTarget(e.X, e.Y);
+            AimTarget(e.X, e.Y);
             WaitFor(new TurnCompleteCondition(this));
             double firePower = Math.Max(1, 5 - (distance / 200));
             Fire(firePower);
@@ -87,7 +98,7 @@ public class Test1 : Bot
         }
         else if (Energy < 30 && distance <= 300)
         {
-            AimTurretToTarget(e.X, e.Y);
+            AimTarget(e.X, e.Y);
             WaitFor(new TurnCompleteCondition(this));
             SetForward(200);
             WaitFor(new TurnCompleteCondition(this));
