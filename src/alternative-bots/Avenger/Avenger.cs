@@ -40,6 +40,7 @@ public class Avenger : Bot
         while (IsRunning)
         {
             
+            
             if (targetId < 0 || TurnNumber - lastScannedTick > 1) 
             {
                 targetId = -1;
@@ -97,14 +98,8 @@ public class Avenger : Bot
 
     public override void OnHitByBullet(HitByBulletEvent e)
     {
-        if (targetId < 0) {
-            lastScannedTick = TurnNumber;       
-            targetId = e.Bullet.OwnerId;
-            targetLocation = (e.Bullet.X, e.Bullet.Y);
-            SetTurnRadarLeft(RadarBearingTo(e.Bullet.X, e.Bullet.Y));
-            SetTurnGunLeft(GunBearingTo(e.Bullet.X, e.Bullet.Y));
-            SetForward(100);
-        }
+        if (targetId < 0) 
+            SwitchTargets(e.Bullet.OwnerId, e.Bullet.X, e.Bullet.Y);
     }
 
     public override void OnBotDeath(BotDeathEvent e)
@@ -117,14 +112,8 @@ public class Avenger : Bot
 
     public override void OnHitBot(HitBotEvent e)
     {
-        if (targetId < 0) {
-            lastScannedTick = TurnNumber;       
-            targetId = e.VictimId;
-            targetLocation = (e.X, e.Y);
-            SetTurnRadarLeft(RadarBearingTo(e.X, e.Y));
-            SetTurnGunLeft(GunBearingTo(e.X, e.Y));
-            SetForward(100);
-        }
+        if (targetId < 0) 
+            SwitchTargets(e.VictimId, e.X, e.Y);
         SetTurnLeft(BearingTo(e.X, e.Y) + 90);  
         SetBack(100); 
     }
@@ -135,6 +124,16 @@ public class Avenger : Bot
             rageFactor += 100;
         else
             rageFactor = 0;
+    }
+
+    public void SwitchTargets(int id, double X, double Y) 
+    {
+        lastScannedTick = TurnNumber;       
+        targetId = id;
+        targetLocation = (X, Y);
+        SetTurnRadarLeft(RadarBearingTo(X, Y));
+        SetTurnGunLeft(GunBearingTo(X, Y));
+        SetForward(100);
     }
 
     public PointF LinearPrediction(ScannedBotEvent scannedBot, double time)
