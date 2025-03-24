@@ -42,14 +42,12 @@ public class ngegasTron : Bot
 
     private void StopMovement() => Stop();
 
-    private void ResumeMovement()
-    {
+    private void ResumeMovement(){
         paused = false;
         enemyDetected = false;
     }
 
-    public override void Run()
-    {
+    public override void Run(){
         BodyColor   = Color.FromArgb(0x00, 0xC8, 0x00); // lime
         TurretColor = Color.FromArgb(0x00, 0x96, 0x32); // green
         RadarColor  = Color.FromArgb(0x00, 0x64, 0x64); // dark cyan
@@ -62,63 +60,74 @@ public class ngegasTron : Bot
         {
             if (enemyDetected==false && paused==false)
             {
-                SetTurnLeft(5);
-                SetTurnGunLeft(5);
+                SetTurnLeft(16);
+                SetTurnGunLeft(10);
                 SetForward(300);
             }
             Go();
         }
     }
 
-    public override void OnScannedBot(ScannedBotEvent e)
-    {
+    public override void OnScannedBot(ScannedBotEvent e){
         paused = true;
         enemyDetected = true;
         StopMovement();
+        double a,b;//sebagai konstanta untuk mengatasi pergerakan musuh dan lokasi penembakan awal yang tidak sesuai
+        SetTurnGunLeft(-12);
+        if (e.X>=0){
+            a=6;
+        }
+        else {
+            a=-6;
+        }
+        if(e.Y>=0){
+            b=6;
+        }
+        else{
+            b=-6;
+        }
 
         double distance = DistanceTo(e.X, e.Y);
 
-        if (distance <= 50)
-        {
-            AimTarget(e.X, e.Y);
-            WaitFor(new TurnCompleteCondition(this));
+        if (distance <= 30)
+        {   
+
+            AimTarget(e.X+a, e.Y+b);
             Fire(Energy * 0.75);
             WaitFor(new TurnCompleteCondition(this));
         }
         else if (Energy >= 30 && distance <= 1000)
         {
-            AimTarget(e.X, e.Y);
-            WaitFor(new TurnCompleteCondition(this));
-            double firePower = Math.Max(1, 5 - (distance / 200));
-            Fire(firePower);
+            AimTarget(e.X+a, e.Y+b);
+            Forward(200);
+            Fire(5 - (distance / 400));
             WaitFor(new TurnCompleteCondition(this));
         }
-        else if (Energy < 30 && distance <= 300)
+        else if (Energy < 30)
         {
             AimTarget(e.X, e.Y);
             WaitFor(new TurnCompleteCondition(this));
+            SetTurnLeft(-16);
             SetForward(200);
+            Fire(1);
             WaitFor(new TurnCompleteCondition(this));
         }
         
         ResumeMovement();
     }
 
-    public override void OnHitWall(HitWallEvent e)
-    {
+    public override void OnHitWall(HitWallEvent e){
         ReverseDirection();
     }
 
-    public override void OnHitBot(HitBotEvent e)
-    {
+    public override void OnHitBot(HitBotEvent e){
         if (e.IsRammed)
         {
             ReverseDirection();
         }
     }
 
-    public void ReverseDirection()
-    {
+    public void ReverseDirection(){
         if (movingForward)
         {
             SetBack(40000);
@@ -132,8 +141,7 @@ public class ngegasTron : Bot
     }
 }
 
-public class TurnCompleteCondition : Condition
-{
+public class TurnCompleteCondition : Condition{
     private readonly Bot bot;
 
     public TurnCompleteCondition(Bot bot)
