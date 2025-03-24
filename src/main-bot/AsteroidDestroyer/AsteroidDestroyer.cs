@@ -66,6 +66,7 @@ public class AsteroidDestroyer : Bot
         if (TargetId == e.ScannedBotId) // If this is our target
         {
             ScannedTurn = TurnNumber;
+            TargetEnergy = e.Energy;
 
             // Calculate Distance
             double TargetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2)); 
