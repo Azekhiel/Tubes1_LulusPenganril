@@ -24,7 +24,6 @@ public class AsteroidDestroyer : Bot
 
     AsteroidDestroyer() : base(BotInfo.FromFile("AsteroidDestroyer.json")) { }
     
-    // Called when a new round is started -> initialize and do some movement
     public override void Run()
     {
         var pink = Color.FromArgb(0xFF, 0x69, 0xB4);
@@ -42,10 +41,9 @@ public class AsteroidDestroyer : Bot
 
         while (IsRunning)
         {
-            Mode = (TurnNumber - ScannedTurn > 1) ? BotMode.Scanning : Mode;
-            Console.WriteLine(TurnNumber + " vs " + ScannedTurn);
+            Mode = (TurnNumber - ScannedTurn > 1) ? BotMode.Scanning : Mode; // Go to search mode if lost target
 
-            if (Mode == BotMode.Scanning) 
+            if (Mode == BotMode.Scanning) // Actively search for target by spinning and moving around
             {
                 TargetId = -1;
                 SetTurnRadarLeft(double.PositiveInfinity);
@@ -59,33 +57,39 @@ public class AsteroidDestroyer : Bot
     
     public override void OnScannedBot(ScannedBotEvent e)
     {   
-        if (TargetId < 0)
+        if (TargetId < 0) // If no target yet, make this our new target
         {
             TargetId = e.ScannedBotId;
             TargetEnergy = e.Energy;
         }
             
-        if (TargetId == e.ScannedBotId)
+        if (TargetId == e.ScannedBotId) // If this is our target
         {
             ScannedTurn = TurnNumber;
 
-            double TargetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
+            // Calculate Distance
+            double TargetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2)); 
 
+            // Calculate Fire Power
             double DistanceFactor = 3 * Math.Exp(-TargetDistance / 250);
             double SpeedFactor = 1 - (e.Speed / 8); 
             double EnergyFactor = 1 - Math.Exp(-Energy / 25);
             double FirePower = (DistanceFactor + SpeedFactor) * EnergyFactor; 
 
+            // Predict Location
             PointF TargetPosition = LinearPrediction(e, FirePower); 
 
+            // Calculate Directions
             double RadarDirection = RadarBearingTo(e.X, e.Y);   
             double GunDirection = GunBearingTo(TargetPosition.X, TargetPosition.Y);
             double MoveDirecion = BearingTo(TargetPosition.X, TargetPosition.Y);
 
+            // Move Bot
             SetTurnRadarLeft(RadarDirection);
             SetTurnGunLeft(GunDirection); 
             Fire(FirePower);
 
+            // Switching Modes Using Cooldown (to fix bug with being stuck)
             if (ModeCooldown > 15) 
             {
                 ModeCooldown = 0;
@@ -95,20 +99,21 @@ public class AsteroidDestroyer : Bot
                 ModeCooldown++;         
             }
 
-            if (Mode == BotMode.Chasing) 
+            if (Mode == BotMode.Chasing) // Chase if far
             {
                 SetTurnLeft(MoveDirecion);   
                 SetForward(TargetDistance / 2);
             }   
-            else 
+            else // Strafe if close
             {
                 SetTurnLeft(MoveDirecion + 90); 
                 SetForward(Polarity * 100); 
             }
 
-            if (RadarDirection == 0)
+            if (RadarDirection == 0) // Rescan if straight ahead
                 Rescan(); 
-        } else if (e.Energy < TargetEnergy)
+        
+        } else if (e.Energy < TargetEnergy) // If this bot has less energy than current target, make this our new target
         {
             TargetId = e.ScannedBotId;
             TargetEnergy = e.Energy;
@@ -126,18 +131,18 @@ public class AsteroidDestroyer : Bot
         Polarity *= -1; 
         SetBack(100);
         SetTurnRadarLeft(RadarBearingTo(e.X, e.Y) + 90);
-        if (e.Energy < TargetEnergy)
+        if (e.Energy < TargetEnergy) // If this bot has less energy than current target, make this our new target
         {
             TargetId = e.VictimId;
             TargetEnergy = e.Energy;
             SetTurnRadarLeft(RadarBearingTo(e.X, e.Y));
-        } else 
+        }  
         Go();
     }
 
     public override void OnHitWall(HitWallEvent e)
     {
-        Polarity *= -1;
+        Polarity *= -1; // Make bot go the other way
     }
 
     public PointF LinearPrediction(ScannedBotEvent scannedBot, double firePower)
@@ -150,6 +155,7 @@ public class AsteroidDestroyer : Bot
 
         double prevDistance = double.MaxValue;
 
+        // Iterative Method (Similar to Newton's Method)
         for (int i = 0; i < 30; i++) 
         {
             double distance = Math.Sqrt(Math.Pow(predictedX - X, 2) + Math.Pow(predictedY - Y, 2));
