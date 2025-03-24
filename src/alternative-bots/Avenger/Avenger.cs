@@ -40,7 +40,7 @@ public class Avenger : Bot
         while (IsRunning)
         {
             
-            
+            // Jika tidak ada target
             if (targetId < 0 || TurnNumber - lastScannedTick > 1) 
             {
                 targetId = -1;
@@ -48,6 +48,7 @@ public class Avenger : Bot
                 SetTurnRadarLeft(double.PositiveInfinity);
             } 
 
+            // Jika ada target tapi belum ditemukan
             if (targetId > 0 && mode == BotMode.Search)
             {
                 lastScannedTick = TurnNumber;
@@ -62,30 +63,34 @@ public class Avenger : Bot
     
     public override void OnScannedBot(ScannedBotEvent e)
     {  
-        if (targetId < 0)
+        if (targetId < 0) // Menghindari musuh 
         {
             SetTurnLeft(-GunBearingTo(e.X, e.Y));
             SetForward(100);
         }
-        if (targetId == e.ScannedBotId)
+        if (targetId == e.ScannedBotId) // Menemukan musuh yang ingin di-balas dendami
         {
             mode = BotMode.Revenge;
             lastScannedTick = TurnNumber;
             targetLocation = (e.X, e.Y);
 
+            // Perhitungan jarak, posisi, dan fire power
             double targetDistance = Math.Sqrt(Math.Pow(e.X - X, 2) + Math.Pow(e.Y - Y, 2));
             double firePower = 4 * Math.Exp(-targetDistance / (250 + rageFactor));
             PointF targetPosition = LinearPrediction(e, targetDistance / (20 - (3 * firePower))); 
 
+            // Perhitungan sudut gerak
             double radarDirection = RadarBearingTo(e.X, e.Y);   
             double gunDirection = GunBearingTo(targetPosition.X, targetPosition.Y);
             double moveDirection = BearingTo(targetPosition.X, targetPosition.Y);
 
+            // Gerakan
             SetTurnRadarLeft(radarDirection);
             SetTurnGunLeft(gunDirection); 
             Fire(firePower);
 
-            if (targetDistance > 50) 
+            // Kejar musuh 
+            if (targetDistance > 50) // Ini agar bot bisa tabrak menabrak tanpa ram terus-menerus seperti Ramfire
             {
                 SetTurnLeft(moveDirection);
                 SetForward(targetDistance / 2);
@@ -98,13 +103,13 @@ public class Avenger : Bot
 
     public override void OnHitByBullet(HitByBulletEvent e)
     {
-        if (targetId < 0) 
+        if (targetId < 0) // Balas Dendam
             SwitchTargets(e.Bullet.OwnerId, e.Bullet.X, e.Bullet.Y);
     }
 
     public override void OnBotDeath(BotDeathEvent e)
     {
-        if (e.VictimId == targetId)
+        if (e.VictimId == targetId) // Target mati, kembali ke pelarian
             targetId = -1;
             rageFactor = 0;
             mode = BotMode.Search;
@@ -112,7 +117,7 @@ public class Avenger : Bot
 
     public override void OnHitBot(HitBotEvent e)
     {
-        if (targetId < 0) 
+        if (targetId < 0) // Balas Dendam
             SwitchTargets(e.VictimId, e.X, e.Y);
         SetTurnLeft(BearingTo(e.X, e.Y) + 90);  
         SetBack(100); 
@@ -120,13 +125,13 @@ public class Avenger : Bot
 
     public override void OnBulletHit(BulletHitBotEvent e)
     {
-        if (e.VictimId == targetId)
+        if (e.VictimId == targetId) // Rage factor saat tembakan berhasil
             rageFactor += 100;
         else
             rageFactor = 0;
     }
 
-    public void SwitchTargets(int id, double X, double Y) 
+    public void SwitchTargets(int id, double X, double Y) // Mekanisme Greedy "Balas Dendam"
     {
         lastScannedTick = TurnNumber;       
         targetId = id;
@@ -136,7 +141,7 @@ public class Avenger : Bot
         SetForward(100);
     }
 
-    public PointF LinearPrediction(ScannedBotEvent scannedBot, double time)
+    public PointF LinearPrediction(ScannedBotEvent scannedBot, double time) // Prediksi linier sangat sederhana (tidak terlalu akurat)
     {
         double theta = Math.PI * scannedBot.Direction / 180.0;
         
